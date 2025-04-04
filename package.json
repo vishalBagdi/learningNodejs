@@ -8,15 +8,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon argument.js"
+    "start": "nodemon index.js"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
   },
   "dependencies": {
     "chalk": "^4.1.2",
+    "cowsay": "^1.6.0",
     "dotenv": "^16.4.7",
+    "lodash": "^4.17.21",
     "minimist": "^1.2.8",
-    "progress": "^2.0.3"
+    "progress": "^2.0.3",
+    "prompt-sync": "^4.2.0"
   }
 }
