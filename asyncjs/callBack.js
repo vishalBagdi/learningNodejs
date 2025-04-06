@@ -32,7 +32,7 @@ function makecallApi(cb){
      
     },0)
 }
-
+// this is call back hell
 makecallApi(()=>{ 
     makecallApi(()=>{
         makecallApi(()=>{
