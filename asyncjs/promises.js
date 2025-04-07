@@ -9,33 +9,29 @@
 //     reject(err)
 // }
 
-
-
-
 // } )
 
-
-// promise.then( 
+// promise.then(
 //     (val) => {
 //          console.log("Passed !", val);
 //     }
 // ).catch( (err)=>{
 //     console.log("failed",err);
-    
+
 // }).finally(()=>{
 //     console.log("Clean up");
-    
+
 // })
 
 // let p = Promise.resolve("Execution is done")
 // let q = Promise.reject("Execution is rejected")
 // p.then((val)=>{
 //     //console.log(val);
-    
+
 // })
 // q.then((val)=>{
 //     console.log(val);
-    
+
 // })
 
 // function asyncTask (){
@@ -44,7 +40,7 @@
 
 // asyncTask().then( ()=>{
 //     console.log(name);
-    
+
 // })
 // const name = "vishal"
 
@@ -53,40 +49,56 @@
 // p.then((val)=>{
 //     console.log(val);
 //     return "done2"
-    
+
 // }).then((val)=>{
 //     console.log(val);
 //     return "done3"
-    
+
 // }).then((val)=>{
 //     console.log(val);
 //     return "done4"
-    
+
 // }).then( (val)=> console.log(val))
 // .catch((val)=> console.log(val)
 // )
 
-const makeApicall =  (time) => {
-return new Promise( (resolve, reject)=>{
-    setTimeout(() => {
-       resolve("this api is executed :" + time) 
-    }, time);
-})
-}
+// $$$$$$$ Performance Promises Async Await
 
-makeApicall(1000).then((val)=>{
-    console.log(val);
-    
-})
+// const makeApicall = (time) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve("this api is executed :" + time);
+//     }, time);
+//   });
+// };
 
-let multiApi = [makeApicall(2000), makeApicall(5000), makeApicall(400)]
+// makeApicall(1000).then((val) => {
+//   console.log(val);
+// });
 
-Promise.all(multiApi).then( (values)=>{
-    console.log(values);
-    
-})
+// let multiApi = [makeApicall(2000), makeApicall(5000), makeApicall(400)];
 
-Promise.race(multiApi).then( (values)=>{
-    console.log(values);
-    
-})
+// Promise.all(multiApi).then((values) => {
+//   console.log(values);
+// });
+
+// Promise.race(multiApi).then((values) => {
+//   console.log(values);
+// });
+
+const makeApicall = (time) => {
+    return () => new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("this api is executed :" + time);
+      }, time);
+    });
+  }; 
+  let multiApi = [makeApicall(2000), makeApicall(5000), makeApicall(400)];
+  
+(async function () {
+    for(let request of multiApi){
+        console.log(await request());
+        
+    }
+})()
+  
